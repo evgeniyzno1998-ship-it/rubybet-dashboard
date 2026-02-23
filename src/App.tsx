@@ -18,6 +18,7 @@ import { LiveMonitorView } from './components/LiveMonitorView';
 import { CohortsView } from './components/CohortsView';
 import { ComplianceView } from './components/ComplianceView';
 import { LoginPage } from './components/LoginPage';
+import SettingsView from './components/SettingsView';
 import { getStoredAdmin, logout, setOnAuthError } from './api';
 
 export default function App() {
@@ -74,6 +75,8 @@ export default function App() {
         return <BonusManagementView />;
       case 'marketing':
         return <MarketingView />;
+      case 'settings':
+        return <SettingsView />;
       default:
         return (
           <div className="flex items-center justify-center h-full text-zinc-500">
@@ -138,8 +141,8 @@ export default function App() {
                 setMobileMenuOpen(false);
               }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${activeTab === item.id
-                  ? 'bg-ruby/10 text-ruby'
-                  : 'text-zinc-400 hover:bg-charcoal-lighter hover:text-soft-white'
+                ? 'bg-ruby/10 text-ruby'
+                : 'text-zinc-400 hover:bg-charcoal-lighter hover:text-soft-white'
                 }`}
             >
               {item.icon}
