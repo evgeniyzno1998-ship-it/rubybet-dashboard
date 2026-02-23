@@ -150,10 +150,27 @@ export async function getBonusStats() {
 }
 
 // --- Bonus Management ---
-export async function createBonusCampaign(data: { bonus_type: string; title: string; description: string; amount: number; target: string; user_ids?: number[] }) {
-    return apiFetch('/admin/bonus/create-campaign', { method: 'POST', body: JSON.stringify(data) });
+export async function getBonusTemplates() {
+    return apiFetch('/admin/bonus/templates');
 }
 
-export async function assignBonus(data: { user_id: number; bonus_type: string; title: string; amount: number }) {
-    return apiFetch('/admin/bonus/assign', { method: 'POST', body: JSON.stringify(data) });
+export async function createBonusTemplate(data: { name: string; bonus_type: string; amount: number; description: string }) {
+    return apiFetch('/admin/bonus/templates', { method: 'POST', body: JSON.stringify(data) });
+}
+
+export async function getBonusCampaigns() {
+    return apiFetch('/admin/bonus/campaigns');
+}
+
+export async function issueBonuses(data: {
+    is_template: boolean;
+    template_id?: number;
+    bonus_type?: string;
+    title?: string;
+    amount?: number;
+    target_segment: string;
+    send_notification: boolean;
+    notification_message: string;
+}) {
+    return apiFetch('/admin/bonus/issue', { method: 'POST', body: JSON.stringify(data) });
 }
