@@ -111,6 +111,14 @@ export async function getPlayerDetail(uid: number) {
     return apiFetch(`/admin/user/${uid}`);
 }
 
+export async function updatePlayer(uid: number, data: { coins?: number; balance_usdt_cents?: number; free_spins?: number; is_blocked?: boolean }) {
+    return apiFetch(`/admin/user/${uid}/update`, { method: 'POST', body: JSON.stringify(data) });
+}
+
+export async function savePlayerNote(uid: number, note: string) {
+    return apiFetch(`/admin/user/${uid}/note`, { method: 'POST', body: JSON.stringify({ note }) });
+}
+
 export async function getPlayerBets(uid: number, limit = 100) {
     return apiFetch(`/admin/bets/${uid}?limit=${limit}`);
 }
